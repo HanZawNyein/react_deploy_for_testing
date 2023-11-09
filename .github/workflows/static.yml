@@ -4,7 +4,7 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["DEV"]
+    branches: ["DEV","HZN"]
   
   pull_request_target:
     types:
