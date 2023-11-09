@@ -15,6 +15,7 @@ jobs:
 
       - name: Merge hzn into HZN
         run: |
+          git checkout HZN
           git merge hzn
           git commit -m "Merge 'HZN' branch into 'DEV' branch"
           git push
