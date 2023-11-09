@@ -15,7 +15,7 @@ jobs:
 
       - name: Merge HZN into Dev
         run: |
-          git checkout dev
+          git checkout DEV
           git pull
           git merge HZN --no-edit
           git push
