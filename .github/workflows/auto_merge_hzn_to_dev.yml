@@ -27,10 +27,10 @@ jobs:
         id: merge-commit-message
         run: |
           echo "Merge from HZN"
-      - name: Commit changes
-        run: |
-          git add .
-          git commit -m "{{ steps.merge-commit-message.outputs.stdout }}"
+      # - name: Commit changes
+      #   run: |
+      #     git add .
+      #     git commit -m "{{ steps.merge-commit-message.outputs.stdout }}"
       - name: Push changes to DEV
         uses: ad-m/github-push-action@master
         with:
