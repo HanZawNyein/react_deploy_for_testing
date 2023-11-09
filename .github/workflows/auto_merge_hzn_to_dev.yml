@@ -30,7 +30,7 @@ jobs:
       - name: Commit changes
         run: |
           git add .
-          git commit-message "{{ steps.merge-commit-message.outputs.stdout }}"
+          git commit -m "{{ steps.merge-commit-message.outputs.stdout }}"
       - name: Push changes to DEV
         uses: ad-m/github-push-action@master
         with:
