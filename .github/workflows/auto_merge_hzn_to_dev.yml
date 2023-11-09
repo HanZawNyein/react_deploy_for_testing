@@ -1,16 +1,10 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Auto-Merge HZN to DEV
-
-# Controls when the workflow will run
+name: Merge branch HZN to DEV
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: 
-      - "HZN" 
-
+    branches:
+      - 'HZN'
 jobs:
-  sync-branch:
+  merge-branch:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
@@ -19,6 +13,6 @@ jobs:
         uses: devmasx/merge-branch@master
         with:
           type: now
-          from_branch: HZN
           target_branch: DEV
+          message: Merge ZHN into DEV
           github_token: ${{ secrets.GITHUB_TOKEN }}
