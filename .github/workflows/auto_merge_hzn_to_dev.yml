@@ -21,10 +21,9 @@ jobs:
 
       - name: Merge HZN into DEV
         run: |
-          git fetch origin DEV:DEV
           git checkout HZN
-          git pull
-          git push origin HZN:HZN
-          git push origin HZN:DEV
+          git fetch DEV
+          git pull origin HZN
+          git merge DEV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
