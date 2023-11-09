@@ -2,11 +2,15 @@ name: Auto-Merge HZN to DEV
 
 on:
   push:
-    branches:
-      - HZN
+    branches: ["HZN"]
+
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
-  pages: write          # <-- Add this line
+  pages: write
+  id-token: write
+
 jobs:
   merge:
     runs-on: ubuntu-latest
