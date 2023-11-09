@@ -3,7 +3,7 @@ name: Auto Merge HZN to Dev
 on:
   push:
     branches:
-      - HZN
+      - hzn
 
 jobs:
   auto_merge:
@@ -11,11 +11,11 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@HZN
 
-      - name: Merge HZN into Dev
+      - name: Merge hzn into HZN
         run: |
-          git merge DEV
+          git merge hzn
           git commit -m "Merge 'HZN' branch into 'DEV' branch"
           git push
         env:
