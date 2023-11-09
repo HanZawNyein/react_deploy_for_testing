@@ -1,23 +1,24 @@
-name: Auto-Merge HZN to DEV
+name: Auto Merge HZN to Dev
 
 on:
   push:
-    branches: ["HZN"]
+    branches:
+      - HZN
 
 jobs:
-  merge:
+  auto_merge:
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Merge master back to dev
+      - name: Merge HZN into Dev
         run: |
-          git fetch --unshallow
-          git checkout HZN
+          git checkout dev
           git pull
-          git merge --no-ff origin/DEV -m "Auto-merge master back to dev"
+          git merge HZN --no-edit
           git push
+
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
