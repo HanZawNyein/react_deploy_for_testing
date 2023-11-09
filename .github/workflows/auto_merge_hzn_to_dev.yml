@@ -1,18 +1,35 @@
 name: Merge branch HZN to DEV
+
 on:
   push:
     branches:
-      - 'HZN'
+      - "HZN"
 jobs:
   merge-branch:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-
-      - name: Merge HZN -> DEV
-        uses: devmasx/merge-branch@master
+      - uses: actions/checkout@v2
+      - uses: everlytic/branch-merge@1.1.2
         with:
-          type: now
-          target_branch: DEV
-          message: Merge ZHN into DEV
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.GITHUB_TOKEN }}
+          source_ref: ${{ github.ref }}
+          target_branch: 'DEV'
+          commit_message_template: '[Automated] Merged {source_ref} into target {target_branch}'
+
+# on:
+#   push:
+#     branches:
+#       - 'HZN'
+# jobs:
+#   merge-branch:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+
+#       - name: Merge HZN -> DEV
+#         uses: devmasx/merge-branch@master
+#         with:
+#           type: now
+#           target_branch: DEV
+#           message: Merge ZHN into DEV
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
