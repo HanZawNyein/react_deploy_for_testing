@@ -2,21 +2,38 @@ name: Auto Merge HZN to Dev
 
 on:
   push:
-    branches:
-      - HZN
+    branches: ["HZN"]
 
 jobs:
-  auto_merge:
+  auto-merge:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Merge HZN into Dev
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Fetch latest changes
         run: |
-          git merge DEV
-          git commit -m "Merge 'HZN' branch into 'DEV' branch"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git fetch --all
+          git reset --hard origin/DEV
+      - name: Checkout HZN branch
+        uses: actions/checkout@v3
+        with:
+          ref: HZN
+          fetch-depth: 0
+      - name: Create merge commit
+        run: |
+          git checkout DEV
+          git merge HZN --no-commit
+      - name: Get merge commit message
+        id: merge-commit-message
+        run: |
+          echo "Merge from HZN"
+      - name: Commit changes
+        run: |
+          git add .
+          git commit-message "{{ steps.merge-commit-message.outputs.stdout }}"
+      - name: Push changes to DEV
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: DEV
+          force: true
