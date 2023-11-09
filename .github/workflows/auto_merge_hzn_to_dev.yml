@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@HZN
+        uses: actions/checkout@v3
 
       - name: Merge hzn into HZN
         run: |
