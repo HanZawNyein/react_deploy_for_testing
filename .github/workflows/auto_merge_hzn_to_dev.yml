@@ -4,13 +4,6 @@ on:
   push:
     branches: ["HZN"]
 
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   merge:
     runs-on: ubuntu-latest
@@ -26,3 +19,5 @@ jobs:
           git pull
           git merge --no-ff origin/DEV -m "Auto-merge master back to dev"
           git push
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
