@@ -19,11 +19,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Merge HZN into DEV
+      - name: Merge master back to dev
         run: |
+          git fetch --unshallow
           git checkout HZN
-          git fetch DEV
-          git pull origin HZN
-          git merge DEV
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git pull
+          git merge --no-ff DEV -m "Auto-merge master back to dev"
+          git push
