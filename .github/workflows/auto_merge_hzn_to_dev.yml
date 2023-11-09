@@ -24,5 +24,5 @@ jobs:
           git fetch --unshallow
           git checkout HZN
           git pull
-          git merge --no-ff DEV -m "Auto-merge master back to dev"
+          git merge --no-ff origin/DEV -m "Auto-merge master back to dev"
           git push
