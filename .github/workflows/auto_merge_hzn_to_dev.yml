@@ -15,9 +15,8 @@ jobs:
 
       - name: Merge HZN into Dev
         run: |
-          git checkout DEV
-          git pull
+          git merge DEV
+          git commit -m "Merge 'HZN' branch into 'DEV' branch"
           git push
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
