@@ -31,3 +31,5 @@ jobs:
           git pull
           git push origin HZN:HZN
           git push origin HZN:DEV
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
